@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: taskmanager-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: taskmanager
+      MYSQL_USER: taskuser
+      MYSQL_PASSWORD: taskpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: taskmanager-app
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_USER: taskuser
+      DB_PASSWORD: taskpassword
+      SPRING_PROFILES_ACTIVE: default
+    ports:
+      - "8080:8080"
+
+volumes:
+  mysql_data:

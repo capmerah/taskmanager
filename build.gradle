@@ -8,21 +8,39 @@ group = 'com.theawesomeengineer'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // REST API
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // JPA/Hibernate + Jakarta persistence + transactions
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // MySQL driver (runtime only)
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Testing (JUnit 5 + Mockito, etc.)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // ✅ H2 in-memory database just for tests
+    testImplementation 'com.h2database:h2'
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+
+
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
