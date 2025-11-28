@@ -315,7 +315,7 @@ Limitations due to time constraints and/or due to the app running local. These w
 - GitHub Container Registry (GHCR) for container images
 
 ## Author
-Wafi - capmerah@hotmail.com
+capmerah@hotmail.com
 
 ## Github
 https://github.com/capmerah/taskmanager
